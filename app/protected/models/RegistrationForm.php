@@ -41,7 +41,7 @@ class RegistrationForm extends CFormModel
             array('email, user_name, password, confirm_password', 'required'),
             array('email', 'email'),
             array('password, confirm_password', 'length', 'min'=>6, 'max'=>40),
-            array('password', 'compare', 'compareAttribute'=>'confirm_password'),
+            array('confirm_password', 'compare', 'compareAttribute'=>'password'),
         );
     }
 

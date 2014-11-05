@@ -23,11 +23,6 @@
                     <?php echo $content ?>
                 </td>
             </tr>
-            <tr>
-                <td style="padding:15px 20px;text-align:right;padding-top:5px;border-top:solid 1px #dfdfdf">
-                    <a href="http://homeworkonline.ru/">Dom Online Ltd.</a>
-                </td>
-            </tr>
         </tbody>
     </table>
 </body>

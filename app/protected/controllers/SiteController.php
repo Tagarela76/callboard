@@ -2,7 +2,6 @@
 
 class SiteController extends Controller
 {
-
     /**
      * Declares class-based actions.
      */
@@ -109,26 +108,27 @@ class SiteController extends Controller
     public function actionRegistration()
     {
         $model = new RegistrationForm();
+        $user = new User();
         
         if (isset($_POST['RegistrationForm'])) {
             $model->attributes = $_POST['RegistrationForm'];
             if($model->validate()){
-                $user = new User();
                 $user->user_email = $model->email; 
                 $user->user_name = $model->user_name;
                 $user->user_role = User::USER_ROLE;
                 $user->user_password = $user->hashPassword($model->password);
                 //generate verification stringfor user
                 $user->verification_string = User::generateVerificationString(User::VERIFICATION_STRING_LENGTH);
-                var_dump(Yii::app()->mailService->sendVerificationEmail($user));die();
                 if($user->save()){
-                    var_dump(Yii::app());die();
+                    //send verification mail
+                    Yii::app()->mailService->sendVerificationEmail($user);
+                    $this->render('registrationSuccess', array('user'=>$user));
+                    Yii::app()->end();
                 }
-                
             }
         }
         
-        $this->render('registration', array('model' => $model));
+        $this->render('registration', array('model' => $model, 'user'=>$user));
     }
 
 }
