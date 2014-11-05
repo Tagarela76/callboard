@@ -103,6 +103,9 @@ class SiteController extends Controller
         $this->redirect(Yii::app()->homeUrl);
     }
     
+    /**
+     * registration new user
+     */
     public function actionRegistration()
     {
         $model = new RegistrationForm();
@@ -114,8 +117,14 @@ class SiteController extends Controller
                 $user->user_email = $model->email; 
                 $user->user_name = $model->user_name;
                 $user->user_role = User::USER_ROLE;
-                $user->hashPassword($model->password);
-                $user->save();
+                $user->user_password = $user->hashPassword($model->password);
+                //generate verification stringfor user
+                $user->verification_string = User::generateVerificationString(User::VERIFICATION_STRING_LENGTH);
+                var_dump(Yii::app()->mailService->sendVerificationEmail($user));die();
+                if($user->save()){
+                    var_dump(Yii::app());die();
+                }
+                
             }
         }
         

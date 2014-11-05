@@ -19,7 +19,8 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
-                'application.extensions.bootstrap.helpers.TbHtml',
+        'application.extensions.bootstrap.helpers.TbHtml',
+        'application.extensions.YiiMailer.*',
 	),
 
 	'modules'=>array(
@@ -66,7 +67,7 @@ return array(
 			'username' => 'root',
 			'password' => 'developer',
 			'charset' => 'utf8',
-                        'tablePrefix' => 'cb_'
+            'tablePrefix' => 'cb_'
 		),
 		
 		'errorHandler'=>array(
@@ -88,12 +89,12 @@ return array(
 				*/
 			),
 		),
+        'mailService' => array('class' => 'application.components.services.MailService'),
 	),
-
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'denis.kv76@gmail.com',
 	),
 );

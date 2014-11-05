@@ -15,25 +15,16 @@ class UserIdentity extends CUserIdentity
         
         if ($user === null) {
             $this->errorCode = self::ERROR_USERNAME_INVALID;
-        } elseif (!$user->validatePassword($this->password)) {
-            $this->errorCode = self::ERROR_PASSWORD_INVALID;
         } else {
-            $this->_id = $user->user_id;
-            $this->errorCode = self::ERROR_NONE;
+            if (!$user->validatePassword($this->password)) {
+                $this->errorCode = self::ERROR_PASSWORD_INVALID;
+            } else {
+                $this->_id = $user->user_id;
+                $this->errorCode = self::ERROR_NONE;
+            }
         }
+        
         return !$this->errorCode;
-        /* $users=array(
-          // username => password
-          'demo'=>'demo',
-          'admin'=>'admin',
-          );
-          if(!isset($users[$this->username]))
-          $this->errorCode=self::ERROR_USERNAME_INVALID;
-          elseif($users[$this->username]!==$this->password)
-          $this->errorCode=self::ERROR_PASSWORD_INVALID;
-          else
-          $this->errorCode=self::ERROR_NONE;
-          return !$this->errorCode; */
     }
 
     public function getId()
