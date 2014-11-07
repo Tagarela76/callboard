@@ -32,8 +32,9 @@
 			'items'=>array(
 				array('label'=>'Список товаров', 'url'=>array('/site/index')),
 				array('label'=>'Регистрация', 'url'=>array('/site/registration'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Редактирование профиля', 'url'=>array('/site/contact'), 'visible'=>!Yii::app()->user->isGuest),
-                                array('label'=>'Список моих товаров', 'url'=>array('/site/contact'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Редактирование профиля', 'url'=>array('/user/updateProfile'), 'visible'=>!Yii::app()->user->isGuest),
+                array('label'=>'Создание товара', 'url'=>array('/product/create'), 'visible'=>!Yii::app()->user->isGuest),
+                array('label'=>'Список моих товаров', 'url'=>array('/product/viewMyProductList'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Авторизация', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),

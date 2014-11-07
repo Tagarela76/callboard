@@ -2,6 +2,32 @@
 
 class UserController extends Controller
 {
+    
+    /**
+     * Update User Profile
+     */
+    public function actionUpdateProfile()
+    {
+        $userId = Yii::app()->user->getId();
+        //get user
+        $user = User::model()->findByPk($userId);
+        
+        if ($userDataForm = Yii::app()->request->getParam('User')) {
+            //check is user change password
+            if($userDataForm['user_password'] == $user->user_password){
+                //we don't need update password
+                unset($userDataForm['user_password']);
+            }else{
+                //hash new user password
+                $userDataForm['user_password'] = $user->hashPassword($userDataForm['user_password']);
+            }
+             $user->attributes = $userDataForm;
+             $user->save();
+        }
+        
+        $this->render('updateProfile', array('user' => $user));
+    }
+
     /**
      * Verification of client email.
      */
