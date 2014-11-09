@@ -52,6 +52,14 @@ class User extends CActiveRecord
 
     /**
      *
+     * token
+     * 
+     * @var string 
+     */
+    public $user_token;
+    
+    /**
+     *
      * verification string
      * 
      * @var string
@@ -68,6 +76,7 @@ class User extends CActiveRecord
 
     const USER_ROLE = 'user';
     const VERIFICATION_STRING_LENGTH = 40;
+    const TOKEN_STRING_LENGTH = 50;
 
     public static function model($className = __CLASS__)
     {
@@ -165,7 +174,7 @@ class User extends CActiveRecord
      * 
      * @return string
      */
-    public static function generateVerificationString($length = 32)
+    public static function generateRandomString($length = 32)
     {
         $chars = 'abcdefghijklmnopqrsturxyzABCDEFGHKLMNOPQRSTUXYZ0123456789';
         $numChars = strlen($chars);

@@ -27,9 +27,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        // renders the view file 'protected/views/site/index.php'
-        // using the default layout 'protected/views/layouts/main.php'
-        $this->render('index');
+        if (Yii::app()->user->isGuest) {
+            Yii::app()->getRequest()->redirect(Yii::app()->createUrl('product/viewAllProductList'));
+        } else {
+            Yii::app()->getRequest()->redirect(Yii::app()->createUrl('product/viewMyProductList'));
+        }
     }
 
     /**
@@ -118,7 +120,9 @@ class SiteController extends Controller
                 $user->user_role = User::USER_ROLE;
                 $user->user_password = $user->hashPassword($model->password);
                 //generate verification stringfor user
-                $user->verification_string = User::generateVerificationString(User::VERIFICATION_STRING_LENGTH);
+                $user->verification_string = User::generateRandomString(User::VERIFICATION_STRING_LENGTH);
+                //generate auth user token
+                $user->user_token = User::generateRandomString(User::TOKEN_STRING_LENGTH);
                 if($user->save()){
                     //send verification mail
                     Yii::app()->mailService->sendVerificationEmail($user);

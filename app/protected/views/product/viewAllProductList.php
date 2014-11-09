@@ -12,18 +12,28 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'name' => '_image',
             'value' => '(!empty($data->_image))?CHtml::image($data->_image->getSmallImageUrl()):CHtml::image(ProductImage::getNoImageUrl())',
         ),
-        array('name' => 'product_name', 'header' => 'Название товара'),
-        array('name' => 'product_price', 'header' => 'Цена'),
+        array(
+            'name' => 'product_name',
+            'type' => 'raw',
+            'header' => 'Название товара',
+            'value' => 'CHtml::link($data->product_name, array("product/viewProduct", "id" => $data->product_id ))'
+        ),
+        array(
+            'name' => 'product_price',
+            'header' => 'Цена',
+            'value' => '$data->product_price."$"'
+            ),
         array(
             'name' => 'product_date',
             'type' => 'raw',
             'header' => 'Дата',
-            'value' => 'date("d/m/Y H:i", $data->product_date)'
+            'value' => 'date("d/m/Y H:s", $data->product_date)'
         ),
         array(
-            'class' => 'bootstrap.widgets.TbButtonColumn',
-            'htmlOptions' => array('style' => 'width: 32px'),
-            'template' => '{update} {delete}'
+            'name' => 'user_email',
+            'type' => 'raw',
+            'header' => 'Пользователь',
+            'value' => '$data->_user->user_email'
         ),
     ),
 ));

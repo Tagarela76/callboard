@@ -33,8 +33,17 @@ class Product extends CActiveRecord
      * @var int 
      */
     public $user_id;
-
     
+    /**
+     *
+     * product time
+     * 
+     * @var timestamp 
+     */
+    public $product_date;
+
+
+
     public static function model($className = __CLASS__)
     {
         return parent::model($className);
@@ -61,9 +70,12 @@ class Product extends CActiveRecord
 
     public function relations()
     {
-        return array();
+        return array(
+            '_image' => array(self::HAS_ONE, 'ProductImage', 'product_id'),
+            '_user' => array(self::BELONGS_TO, 'User', 'user_id')
+        );
     }
-    
+
     /**
      * Declares attribute labels.
      */
@@ -73,6 +85,15 @@ class Product extends CActiveRecord
             'product_name' => 'Название',
             'product_price' => 'Цена',
         );
+    }
+    
+    public function beforeDelete()
+    {
+        if(isset($this->_image)){
+            //delete image
+            $this->_image->delete();
+        }
+        return parent::beforeDelete();
     }
 
 }
