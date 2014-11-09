@@ -81,4 +81,22 @@ class ApiController extends Controller
         return (isset($codes[$status])) ? $codes[$status] : '';
     }
 
+    public function getObjectEncoded($model, $array)
+    {
+        if (isset($_GET['format']))
+            $this->format = $_GET['format'];
+        if ($this->format == 'json') {
+            return CJSON::encode($array);
+        } elseif ($this->format == 'xml') {
+            $result = '<?xml version="1.0">';
+            $result .= "\n<$model>\n";
+            foreach ($array as $key => $value)
+                $result .= "    <$key>" . utf8_encode($value) . "</$key>\n";
+            $result .= '</' . $model . '>';
+            return $result;
+        } else {
+            return;
+        }
+    }
+
 }
