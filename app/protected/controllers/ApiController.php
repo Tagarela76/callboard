@@ -3,13 +3,30 @@
 class ApiController extends Controller
 {
 
-    private $format = 'json';
+    public function actions()
+    {
+        return array(
+            'login' => 'application.controllers.api.LoginAction',
+            'getAllProductList' => 'application.controllers.api.AllProductListAction',
+            'getProductById' => 'application.controllers.api.ProductByIdAction',
+        );
+    }
+
+    public function actionIndex()
+    {
+        echo "CallBoard api is working";
+    }
+
+    /////////////////
+    // services:
+    /////////////////
 
     public function sendResponse($status = 200, $message = '', $data = null, $content_type = 'application/json')
     {
         $status_header = 'HTTP/1.1 ' . $status . ' ' . $this->getStatusCodeMessage($status);
         header($status_header);
         header('Content-type: ' . $content_type);
+        
         if ($message || $data) {
             $aRes = array('status' => $status, 'message' => $message, 'data' => $data);
             print CJSON::encode($aRes);
@@ -83,20 +100,7 @@ class ApiController extends Controller
 
     public function getObjectEncoded($model, $array)
     {
-        if (isset($_GET['format']))
-            $this->format = $_GET['format'];
-        if ($this->format == 'json') {
-            return CJSON::encode($array);
-        } elseif ($this->format == 'xml') {
-            $result = '<?xml version="1.0">';
-            $result .= "\n<$model>\n";
-            foreach ($array as $key => $value)
-                $result .= "    <$key>" . utf8_encode($value) . "</$key>\n";
-            $result .= '</' . $model . '>';
-            return $result;
-        } else {
-            return;
-        }
+        
     }
 
 }
