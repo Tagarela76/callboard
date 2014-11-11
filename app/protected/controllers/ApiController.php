@@ -9,6 +9,7 @@ class ApiController extends Controller
             'login' => 'application.controllers.api.LoginAction',
             'getAllProductList' => 'application.controllers.api.AllProductListAction',
             'getProductById' => 'application.controllers.api.ProductByIdAction',
+            'createProduct' => 'application.controllers.api.CreateProductAction',
         );
     }
 

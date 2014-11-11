@@ -2,7 +2,6 @@
 
 class ProductImage extends CActiveRecord
 {
-
     /**
      *
      * image id
@@ -68,7 +67,7 @@ class ProductImage extends CActiveRecord
     {
         return array(
             array('image_id, image, user_id', 'safe'),
-            array('image', 'file', 'types' => 'jpg, png', 'maxSize'=>1024*1024*5,'tooLarge'=>'Максимальный размер файла 5MB'),
+            array('image', 'file', 'types' => 'jpg, png', 'maxSize' => 1024 * 1024 * 5, 'tooLarge' => 'Максимальный размер файла 5MB'),
         );
     }
 
@@ -80,21 +79,21 @@ class ProductImage extends CActiveRecord
     public function beforeSave()
     {
         $this->uploadImage();
-        
+
         return parent::beforeSave();
     }
-    
+
     public function beforeDelete()
     {
         $smallImagePath = $this->getSmallImagePath();
         $realImagePath = $this->getRealImagePath();
-        if($smallImagePath && file_exists($smallImagePath)){
+        if ($smallImagePath && file_exists($smallImagePath)) {
             unlink($smallImagePath);
         }
-        if($realImagePath && file_exists($realImagePath)){
+        if ($realImagePath && file_exists($realImagePath)) {
             unlink($realImagePath);
         }
-        
+
         return parent::beforeDelete();
     }
 
@@ -106,7 +105,7 @@ class ProductImage extends CActiveRecord
      */
     public function uploadImage()
     {
-        $path = Yii::app()->basePath . '/..'.self::SAVE_IMAGE_PATH . $this->user_id;
+        $path = Yii::app()->basePath . '/..' . self::SAVE_IMAGE_PATH . $this->user_id;
         //check is folder exist
         if (!file_exists($path)) {
             //create user folder for image upload.
@@ -148,7 +147,7 @@ class ProductImage extends CActiveRecord
             return md5($this->image->name) . $time . '.' . $this->image->extensionName;
         }
     }
-    
+
     /**
      * 
      * get small image url
@@ -157,16 +156,15 @@ class ProductImage extends CActiveRecord
      */
     public function getSmallImageUrl()
     {
-        $url = Yii::app()->getBaseUrl(true) . self::SAVE_IMAGE_PATH . 
+        $url = Yii::app()->getBaseUrl(true) . self::SAVE_IMAGE_PATH .
                 $this->user_id . '/' . $this->small_size_image_name;
         if (!file_exists($url)) {
             return $url;
-        }else{
+        } else {
             return self::getNoImageUrl();
         }
-        
     }
-    
+
     /**
      * 
      * get real image url
@@ -175,15 +173,15 @@ class ProductImage extends CActiveRecord
      */
     public function getRealImageUrl()
     {
-        $url = Yii::app()->getBaseUrl(true) . self::SAVE_IMAGE_PATH . 
+        $url = Yii::app()->getBaseUrl(true) . self::SAVE_IMAGE_PATH .
                 $this->user_id . '/' . $this->real_size_image_name;
         if (!file_exists($url)) {
             return $url;
-        }else{
+        } else {
             return self::getNoImageUrl();
         }
-        
     }
+
     /**
      * 
      * get small image path
@@ -192,15 +190,15 @@ class ProductImage extends CActiveRecord
      */
     public function getRealImagePath()
     {
-        $path = Yii::app()->basePath . '/..'.self::SAVE_IMAGE_PATH . 
+        $path = Yii::app()->basePath . '/..' . self::SAVE_IMAGE_PATH .
                 $this->user_id . '/' . $this->real_size_image_name;
         if (file_exists($path)) {
             return $path;
-        }else{
+        } else {
             return false;
         }
     }
-    
+
     /**
      * 
      * get small image path
@@ -209,15 +207,15 @@ class ProductImage extends CActiveRecord
      */
     public function getSmallImagePath()
     {
-        $path = Yii::app()->basePath . '/..'.self::SAVE_IMAGE_PATH . 
+        $path = Yii::app()->basePath . '/..' . self::SAVE_IMAGE_PATH .
                 $this->user_id . '/' . $this->small_size_image_name;
         if (file_exists($path)) {
             return $path;
-        }else{
+        } else {
             return false;
         }
     }
-    
+
     /**
      * get No Image Url
      */
@@ -225,5 +223,59 @@ class ProductImage extends CActiveRecord
     {
         return Yii::app()->getBaseUrl(true) . self::SAVE_IMAGE_PATH . 'small_size_no_image.jpg';
     }
+
+    /**
+     * 
+     * @param string $imageName
+     * @param string $type
+     */
+    public function uploadEncodeImage($base64Image, $imageName)
+    {
+        $imageData = base64_decode($base64Image);
+        file_put_contents('/tmp/'.$imageName, $imageData);
+    }
+    /**
+     * 
+     * @param string $imageName
+     * @param string $type
+     */
+//    public function uploadEncodeImage($base64Image, $imageName)
+//    {
+//        if (is_null($this->user_id)) {
+//            throw new Exception('user id can not be null');
+//        }
+//        $path = Yii::app()->basePath . '/..' . self::SAVE_IMAGE_PATH . $this->user_id;
+//
+//        $realImageName = explode('.', $imageName);
+//        //get file ext
+//        $ext = end($realImageName);
+//
+//        $hashImageName = md5($imageName) . time() . '.' . $ext;
+//
+//        $this->image = $imageName;
+//
+//        $realSizeImageName = 'real_size_' . $hashImageName;
+//        $smallSizeImageName = 'small_size_' . $hashImageName;
+//
+//        $this->real_size_image_name = $realSizeImageName;
+//        $this->small_size_image_name = $smallSizeImageName;
+//
+//        if($this->validate()){
+//            //file upload
+//            $image = base64_decode($base64Image);
+//            file_put_contents($path . '/' . $realSizeImageName, $image);
+//
+//            //load new image from existing one
+//            $smallImage = ImageEditor::createFromFile($path . '/' . $realSizeImageName);
+//            //resize image
+//            $smallImage->resize(50, 50);
+//            //save image
+//            $smallImage->save($path . '/' . $smallSizeImageName, $ext);
+//            
+//            return true;
+//        }
+//
+//        return false;
+//    }
 
 }
