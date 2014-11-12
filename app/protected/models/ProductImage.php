@@ -79,7 +79,10 @@ class ProductImage extends CActiveRecord
 
     public function beforeSave()
     {
-        $this->uploadImage();
+        //check is image CUploaded file or string
+        if($this->image instanceof CUploadedFile){
+            $this->uploadImage();
+        }
         
         return parent::beforeSave();
     }

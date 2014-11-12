@@ -12,6 +12,8 @@ class ApiController extends Controller
             'getUserById' => 'application.controllers.api.UserByIdAction',
             'updateProfile' => 'application.controllers.api.UpdateProfileAction',
             'deleteProductById' => 'application.controllers.api.DeleteProductAction',
+            'createProduct' => 'application.controllers.api.CreateProductAction',
+            'updateProduct' => 'application.controllers.api.UpdateProductAction',
         );
     }
 
