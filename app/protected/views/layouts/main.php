@@ -30,12 +30,13 @@
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Список товаров', 'url'=>array('/site/index')),
+				array('label'=>'Список товаров', 'url'=>array('/product/viewAllProductList')),
 				array('label'=>'Регистрация', 'url'=>array('/site/registration'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Редактирование профиля', 'url'=>array('/site/contact'), 'visible'=>!Yii::app()->user->isGuest),
-                                array('label'=>'Список моих товаров', 'url'=>array('/site/contact'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Редактирование профиля', 'url'=>array('/user/updateProfile'), 'visible'=>!Yii::app()->user->isGuest),
+                                array('label'=>'Создание товара', 'url'=>array('/product/create'), 'visible'=>!Yii::app()->user->isGuest),
+                                array('label'=>'Список моих товаров', 'url'=>array('/product/viewMyProductList'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Авторизация', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				array('label'=>'Выход ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
 	</div><!-- mainmenu -->
@@ -50,9 +51,7 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
+		Callboard
 	</div><!-- footer -->
 
 </div><!-- page -->

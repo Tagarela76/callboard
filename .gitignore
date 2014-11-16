@@ -1,0 +1,9 @@
+ # images
+app/images
+
+#Yii folders
+app/assets
+app/protected/runtime/
+
+#NetBeans folder
+nbproject

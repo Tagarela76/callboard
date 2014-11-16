@@ -178,7 +178,7 @@ abstract class CBaseListView extends CWidget
 	 */
 	public function renderEmptyText()
 	{
-		$emptyText=$this->emptyText===null ? Yii::t('zii','No results found.') : $this->emptyText;
+		$emptyText=$this->emptyText===null ? Yii::t('zii','Нет результатов.') : $this->emptyText;
 		echo CHtml::tag($this->emptyTagName, array('class'=>'empty'), $emptyText);
 	}
 
@@ -218,7 +218,7 @@ abstract class CBaseListView extends CWidget
 				$start=$end-$count+1;
 			}
 			if(($summaryText=$this->summaryText)===null)
-				$summaryText=Yii::t('zii','Displaying {start}-{end} of 1 result.|Displaying {start}-{end} of {count} results.',$total);
+				$summaryText=Yii::t('zii','Показано {start}-{end} из 1 результата.|Показано {start}-{end} из {count} результатов.',$total);
 			echo strtr($summaryText,array(
 				'{start}'=>$start,
 				'{end}'=>$end,

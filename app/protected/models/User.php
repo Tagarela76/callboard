@@ -25,7 +25,7 @@ class User extends CActiveRecord
      * @var string 
      */
     public $user_password;
-    
+
     /**
      *
      * user name
@@ -49,6 +49,14 @@ class User extends CActiveRecord
      * @var string 
      */
     public $user_role;
+
+    /**
+     *
+     * token
+     * 
+     * @var string 
+     */
+    public $user_token;
     
     /**
      *
@@ -57,7 +65,7 @@ class User extends CActiveRecord
      * @var string
      */
     public $verification_string;
-    
+
     /**
      *
      * verification flag
@@ -65,9 +73,10 @@ class User extends CActiveRecord
      * @var bool 
      */
     public $verification_flag = 0;
-    
+
     const USER_ROLE = 'user';
     const VERIFICATION_STRING_LENGTH = 40;
+    const TOKEN_STRING_LENGTH = 50;
 
     public static function model($className = __CLASS__)
     {
@@ -87,7 +96,7 @@ class User extends CActiveRecord
     public function rules()
     {
         return array(
-            array('user_email, user_password', 'required'),
+            array('user_email, user_password, user_name', 'required'),
             array('user_email', 'email'),
             array('user_email', 'unique'),
             array('user_email, user_password', 'length', 'max' => 60),
@@ -98,6 +107,18 @@ class User extends CActiveRecord
     public function relations()
     {
         return array();
+    }
+
+    /**
+     * Declares attribute labels.
+     */
+    public function attributeLabels()
+    {
+        return array(
+            'user_email' => 'Email',
+            'user_name' => 'Имя',
+            'user_password' => 'Пароль',
+        );
     }
 
     /**
@@ -124,13 +145,13 @@ class User extends CActiveRecord
      */
     public function hashPassword($user_password, $user_salt = null)
     {
-        if(is_null($user_salt)){
-            if(is_null($this->user_salt)){
+        if (is_null($user_salt)) {
+            if (is_null($this->user_salt)) {
                 $this->user_salt = $this->generateSalt();
             }
             $user_salt = $this->user_salt;
         }
-        
+
         return md5($user_salt . $user_password);
     }
 
@@ -144,7 +165,7 @@ class User extends CActiveRecord
     {
         return uniqid('', true);
     }
-    
+
     /**
      * 
      * generate random 
@@ -153,7 +174,7 @@ class User extends CActiveRecord
      * 
      * @return string
      */
-    public static function generateVerificationString($length = 32)
+    public static function generateRandomString($length = 32)
     {
         $chars = 'abcdefghijklmnopqrsturxyzABCDEFGHKLMNOPQRSTUXYZ0123456789';
         $numChars = strlen($chars);
@@ -163,7 +184,6 @@ class User extends CActiveRecord
         }
 
         return $string;
-        
     }
 
 }
