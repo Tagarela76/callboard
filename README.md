@@ -120,13 +120,13 @@ $url, $authForm.
 * Return:
     @return array(
         array(
-          string 'productId'
-          string 'productName'
-          string 'productPrice'
-          string 'productDate'
-          integer 'userId'
-          string 'userEmail'
-          string 'productSmallImage'
+          string 'productId',
+          string 'productName',
+          string 'productPrice',
+          string 'productDate',
+          integer 'userId',
+          string 'userEmail',
+          string 'productSmallImage',
           string 'productRealImage'
     )
 )
@@ -141,7 +141,7 @@ $url
 --
   * Получить один товар по его ID
 --
-Метод возвращает список всех товаров
+Метод возвращает товар по id
 
 * Url: app/index.php?r=api/getProductById
 * Method: POST
@@ -149,13 +149,13 @@ $url
     @param integer productId
 * Return:
     @return array(
-          string 'productId'
-          string 'productName'
-          string 'productPrice'
-          string 'productDate'
-          integer 'userId'
-          string 'userEmail'
-          string 'productSmallImage'
+          string 'productId',
+          string 'productName',
+          string 'productPrice',
+          string 'productDate',
+          integer 'userId',
+          string 'userEmail',
+          string 'productSmallImage',
           string 'productRealImage'
     )
 
@@ -169,7 +169,7 @@ $url, $data
 --
   * Получить пользователя по его ID
 --
-Метод возвращает список всех товаров
+Метод возвращает пользователя
 
 * Url: app/index.php?r=api/getUserById
 * Method: POST
@@ -177,8 +177,8 @@ $url, $data
     @param integer userId
 * Return:
     @return array(
-          integer 'userId'
-          string 'userEmail'
+          integer 'userId',
+          string 'userEmail',
           string 'userName'
     )
 
@@ -188,3 +188,26 @@ $url, $data
 Instruction:
 Измените в файле следующие параметры
 $url, $data
+
+--
+  * Редактирование профиля
+--
+
+Метод редактирует профиль
+
+* Url: app/index.php?r=api/updateProfile
+* Method: POST
+* Params:
+    @param string token,
+    @param string userEmail
+    @param string userPass
+    @param string userName
+* Return:
+    @return null
+
+* Example:
+/appClient/callboard/updateProfile.php
+
+Instruction:
+Измените в файле следующие параметры
+$url, $url2, $data, $authForm
