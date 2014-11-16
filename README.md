@@ -93,6 +93,7 @@ CREATE TABLE IF NOT EXISTS `cb_user` (
  * Авторизация
 --
 Метод авторизирует пользователя и отправляет token
+
 * Url: app/index.php?r=api/login
 * Method: POST
 * Params:
@@ -103,6 +104,31 @@ CREATE TABLE IF NOT EXISTS `cb_user` (
 
 * Example:
 /appClient/callboard/login.php
+
+--
+  * Получить список всех товаров
+--
+Метод возвращает список всех товаров
+
+* Url: app/index.php?r=api/getAllProductList
+* Method: POST
+* Params:
+* Return:
+    @return array(
+        array(
+          string 'productId'
+          string 'productName'
+          string 'productPrice'
+          string 'productDate'
+          integer 'userId'
+          string 'userEmail'
+          string 'productSmallImage'
+          string 'productRealImage'
+    )
+)
+
+* Example:
+/appClient/callboard/allProduct.php
 
 
 
