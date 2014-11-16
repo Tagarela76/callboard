@@ -67,6 +67,7 @@ class ProductImage extends CActiveRecord
     public function rules()
     {
         return array(
+            array('image', 'required', 'message'=>'Пожалуйста загрузите рисунок'),
             array('image_id, image, user_id', 'safe'),
             array('image', 'file', 'types' => 'jpg, png', 'maxSize'=>1024*1024*5,'tooLarge'=>'Максимальный размер файла 5MB'),
         );

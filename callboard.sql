@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Ноя 05 2014 г., 16:44
+-- Время создания: Ноя 16 2014 г., 17:21
 -- Версия сервера: 5.5.40-0ubuntu0.14.04.1
 -- Версия PHP: 5.5.9-1ubuntu4.5
 
@@ -23,6 +23,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `cb_product`
+--
+
+CREATE TABLE IF NOT EXISTS `cb_product` (
+  `product_id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `product_name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `product_price` float NOT NULL,
+  `user_id` mediumint(9) NOT NULL,
+  `product_date` int(11) NOT NULL,
+  PRIMARY KEY (`product_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `cb_product_image`
+--
+
+CREATE TABLE IF NOT EXISTS `cb_product_image` (
+  `image_id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `image` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `user_id` mediumint(9) NOT NULL,
+  `real_size_image_name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `small_size_image_name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `product_id` mediumint(9) NOT NULL,
+  PRIMARY KEY (`image_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `cb_user`
 --
 
@@ -33,18 +64,11 @@ CREATE TABLE IF NOT EXISTS `cb_user` (
   `user_salt` varchar(255) CHARACTER SET utf8 NOT NULL,
   `user_name` varchar(255) CHARACTER SET utf8 NOT NULL,
   `user_role` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `user_token` varchar(255) NOT NULL,
   `verification_string` varchar(255) CHARACTER SET utf8 NOT NULL,
   `verification_flag` tinyint(1) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
-
---
--- Дамп данных таблицы `cb_user`
---
-
-INSERT INTO `cb_user` (`user_id`, `user_email`, `user_password`, `user_salt`, `user_name`, `user_role`, `verification_string`, `verification_flag`) VALUES
-(1, 'DisidentD@mail.ru', 'bb3cf80efa986216266c0d5762e4f327', '5459cedab37e41.60941021', 'Denis', 'user', '', 0),
-(8, 'denis.kv@kttsoft.com', 'ad6ec0ca1b91efd7fb97c8c782a53f38', '5459eab236e3f6.14947151', 'developer', 'user', '4UEjySoxN3YKDZQmYdbhNsXy6cTEfrh9hNiFuy6a', 0);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
