@@ -63,7 +63,7 @@ class UpdateProductAction extends CAction
             //save image
             $smallImage->save($path . '/' . $productImage->small_size_image_name, $ext);
 
-            $controller->sendResponse(200, 'ok');
+            $controller->sendResponse(200, 'ok', array('productId' => $product->product_id));
         }else{
             $controller->sendResponse(200, 'error', $productErrors);
         }

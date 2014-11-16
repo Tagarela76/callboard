@@ -100,6 +100,7 @@ CREATE TABLE IF NOT EXISTS `cb_user` (
     @param string email
     @param string pass
 * Return:
+
     @return string token
 
 * Example:
@@ -146,7 +147,9 @@ $url
 * Url: app/index.php?r=api/getProductById
 * Method: POST
 * Params:
+
     @param integer productId
+
 * Return:
     @return array(
           string 'productId',
@@ -174,7 +177,9 @@ $url, $data
 * Url: app/index.php?r=api/getUserById
 * Method: POST
 * Params:
+
     @param integer userId
+
 * Return:
     @return array(
           integer 'userId',
@@ -198,10 +203,15 @@ $url, $data
 * Url: app/index.php?r=api/updateProfile
 * Method: POST
 * Params:
+
     @param string token,
+
     @param string userEmail
+
     @param string userPass
+
     @param string userName
+
 * Return:
     @return null
 
@@ -211,3 +221,102 @@ $url, $data
 Instruction:
 Измените в файле следующие параметры
 $url, $url2, $data, $authForm
+
+--
+    * Удаление своего товара по его ID
+--
+
+Метод удаление товара по его ID
+
+* Url: app/index.php?r=api/deleteProductById
+* Method: POST
+* Params:
+
+    @param string token,
+
+    @param integer productId
+
+
+* Return:
+    @return null
+
+* Example:
+/appClient/callboard/deleteProduct.php
+
+Instruction:
+Измените в файле следующие параметры
+$url, $url2, $data, $authForm
+
+
+--
+    * Создание товара
+--
+
+Метод создает товара
+
+* Url: app/index.php?r=api/createProduct
+* Method: POST
+* Params:
+
+    @param string token,
+
+    @param string productName
+ 
+    @param integer productPrice
+
+    @param base64 productImage
+
+    @param string imageName
+);
+
+
+* Return:
+    @return integer productId
+
+* Example:
+/appClient/callboard/createProduct.php
+
+Instruction:
+Измените в файле следующие параметры
+$url, $url2, $data, $authForm
+
+
+--
+    * Обновление товара
+--
+
+Метод обновление товара
+
+* Url: app/index.php?r=api/updateProduct
+* Method: POST
+* Params:
+
+    @param string token,
+
+    @param string productName
+ 
+    @param integer productPrice
+
+    @param base64 productImage
+
+    @param string imageName
+
+    @param integer productId
+);
+
+
+* Return:
+    @return integer productId
+
+* Example:
+/appClient/callboard/updateProduct.php
+
+Instruction:
+Измените в файле следующие параметры
+$url, $url2, $data, $authForm
+
+--------------------------------------------
+--
+NOTE
+--
+Проверка типа данных и размера изображение ложится на плечи клиента
