@@ -60,14 +60,22 @@ return array(
           ), */
         // uncomment the following to use a MySQL database
 
-        'db'=>array(
+        /*'db'=>array(
           'connectionString' => 'mysql:host=localhost;dbname=callboard',
           'emulatePrepare' => true,
           'username' => 'root',
           'password' => 'developer',
           'charset' => 'utf8',
           'tablePrefix' => 'cb_'
-          ),
+          ),*/
+        'db' => array(
+            'connectionString' => 'mysql:host=miabook.mysql.ukraine.com.ua;dbname=miabook_board',
+            'emulatePrepare' => true,
+            'username' => 'miabook_board',
+            'password' => '4n368kzg',
+            'charset' => 'utf8',
+            'tablePrefix' => 'cb_'
+        ),
         'errorHandler' => array(
             // use 'site/error' action to display errors
             'errorAction' => 'site/error',
@@ -93,6 +101,6 @@ return array(
     // using Yii::app()->params['paramName']
     'params' => array(
         // this is used in contact page
-        'adminEmail' => 'noreply@info.com',
+        'adminEmail' => 'denis.kv76@gmail.com',
     ),
 );

@@ -36,7 +36,7 @@
                                 array('label'=>'Создание товара', 'url'=>array('/product/create'), 'visible'=>!Yii::app()->user->isGuest),
                                 array('label'=>'Список моих товаров', 'url'=>array('/product/viewMyProductList'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Авторизация', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				array('label'=>'Выход ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
 	</div><!-- mainmenu -->
