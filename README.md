@@ -166,3 +166,25 @@ Instruction:
 Измените в файле следующие параметры
 $url, $data
 
+--
+  * Получить пользователя по его ID
+--
+Метод возвращает список всех товаров
+
+* Url: app/index.php?r=api/getUserById
+* Method: POST
+* Params:
+    @param integer userId
+* Return:
+    @return array(
+          integer 'userId'
+          string 'userEmail'
+          string 'userName'
+    )
+
+* Example:
+/appClient/callboard/getUserById.php
+
+Instruction:
+Измените в файле следующие параметры
+$url, $data
