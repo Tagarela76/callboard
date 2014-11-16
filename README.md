@@ -105,6 +105,10 @@ CREATE TABLE IF NOT EXISTS `cb_user` (
 * Example:
 /appClient/callboard/login.php
 
+Instruction:
+Измените в файле следующие параметры
+$url, $authForm.
+
 --
   * Получить список всех товаров
 --
@@ -130,6 +134,35 @@ CREATE TABLE IF NOT EXISTS `cb_user` (
 * Example:
 /appClient/callboard/allProduct.php
 
+Instruction:
+Измените в файле следующие параметры
+$url
 
+--
+  * Получить один товар по его ID
+--
+Метод возвращает список всех товаров
 
+* Url: app/index.php?r=api/getProductById
+* Method: POST
+* Params:
+    @param integer productId
+* Return:
+    @return array(
+          string 'productId'
+          string 'productName'
+          string 'productPrice'
+          string 'productDate'
+          integer 'userId'
+          string 'userEmail'
+          string 'productSmallImage'
+          string 'productRealImage'
+    )
+
+* Example:
+/appClient/callboard/productById.php
+
+Instruction:
+Измените в файле следующие параметры
+$url, $data
 

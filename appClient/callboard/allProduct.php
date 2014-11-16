@@ -1,4 +1,4 @@
-  <?php 
+<?php 
  
 require_once 'guzzle/vendor/autoload.php';
 
