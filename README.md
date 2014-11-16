@@ -1,6 +1,8 @@
 CallBoard
 
-Установка проекта
+--
+-- Установка проекта
+--
 
 1)Наберите в консоле
 git clone https://github.com/Tagarela76/callboard.git
@@ -9,14 +11,16 @@ git clone https://github.com/Tagarela76/callboard.git
     callboard/app/protected/runtime
     callboard/app/assets
 
+-- --------------------------------------------------------
+
 Настройка базы данных
+
 1) Создайте базу данных callboard
 
 2) Загрузите файл callboard.sql или введите следующие команды
 
---
+
 -- Структура таблицы `cb_product`
---
 
 CREATE TABLE IF NOT EXISTS `cb_product` (
   `product_id` mediumint(9) NOT NULL AUTO_INCREMENT,
@@ -27,12 +31,7 @@ CREATE TABLE IF NOT EXISTS `cb_product` (
   PRIMARY KEY (`product_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `cb_product_image`
---
 
 CREATE TABLE IF NOT EXISTS `cb_product_image` (
   `image_id` mediumint(9) NOT NULL AUTO_INCREMENT,
@@ -44,11 +43,7 @@ CREATE TABLE IF NOT EXISTS `cb_product_image` (
   PRIMARY KEY (`image_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
 -- Структура таблицы `cb_user`
---
 
 CREATE TABLE IF NOT EXISTS `cb_user` (
   `user_id` mediumint(9) NOT NULL AUTO_INCREMENT,
@@ -63,10 +58,13 @@ CREATE TABLE IF NOT EXISTS `cb_user` (
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-3) Измените данные поделючения к базе данных.
+3) Измените данные подлючения к базе данных.
     app/protected/config/main.php
- 
-Донастройка проекта
+
+ -- --------------------------------------------------------
+--
+-- Донастройка проекта
+--
 
 1) Создайте папку с правами доступа 777
     callboard/app/images
