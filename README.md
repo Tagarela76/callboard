@@ -83,14 +83,27 @@ CREATE TABLE IF NOT EXISTS `cb_user` (
 --
 
 В корне проекта в папке appClient содержаться примеры работы api
-Для работы примеров установите  разширение curl
+
+Для работы примеров установите  разширение curl.
+
+Установите библиотеку appClient/callboard/guzzle - (https://github.com/guzzle/guzzle)
 -- --------------------------------------------------------
    
 --
  * Авторизация
 --
-Пример:
+Метод авторизирует пользователя и отправляет token
+* Url: app/index.php?r=api/login
+* Method: POST
+* Params:
+    @param string email
+    @param string pass
+* Return:
+    @return string token
 
+* Example:
 /appClient/callboard/login.php
+
+
 
 
