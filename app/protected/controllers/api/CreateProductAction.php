@@ -27,9 +27,9 @@ class CreateProductAction extends CAction
         $product->product_name = $productName;
         $product->product_price = $productPrice;
         $product->save();
-
+        $productErrors = $product->getErrors();
         //create image
-        if (!is_null($base64Image) && !is_null($imageName) && empty($product->getErrors())) {
+        if (!is_null($base64Image) && !is_null($imageName) && empty($productErrors)) {
             $productImage = new ProductImage();
             $ext = end(explode('.', $imageName));
             $hashImageName = md5($imageName) . time() . '.' . $ext;
@@ -41,6 +41,10 @@ class CreateProductAction extends CAction
             $productImage->save(false);
             
             $path = Yii::app()->basePath . '/..'.ProductImage::SAVE_IMAGE_PATH . $user->user_id;
+            if (!file_exists($path)) {
+                //create user folder for image upload.
+                mkdir($path, 0777, true);
+            }
             
             $imageData = base64_decode($base64Image);
             file_put_contents($path .'/'. $productImage->real_size_image_name, $imageData);
@@ -51,8 +55,10 @@ class CreateProductAction extends CAction
             //save image
             $smallImage->save($path . '/' . $productImage->small_size_image_name, $ext);
             
-            $controller->sendResponse(200, 'ok');
+            $controller->sendResponse(200, 'ok', array('productId' => $product->product_id));
             
+        }else{
+            $controller->sendResponse(200, 'error', $productErrors);
         }
     }
 

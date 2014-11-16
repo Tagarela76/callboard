@@ -35,8 +35,9 @@ class UpdateProductAction extends CAction
         $product->product_price = $productPrice;
         $product->save();
 
+        $productErrors = $product->getErrors();
         //create image
-        if (!is_null($base64Image) && !is_null($imageName) && empty($product->getErrors())) {
+        if (!is_null($base64Image) && !is_null($imageName) && empty($productErrors)) {
             //delete old image
             if(isset($product->_image)){
                 $product->_image->delete();
@@ -63,6 +64,8 @@ class UpdateProductAction extends CAction
             $smallImage->save($path . '/' . $productImage->small_size_image_name, $ext);
 
             $controller->sendResponse(200, 'ok');
+        }else{
+            $controller->sendResponse(200, 'error', $productErrors);
         }
     }
 

@@ -19,6 +19,10 @@ return array(
         'application.components.*',
         'application.extensions.bootstrap.helpers.TbHtml',
         'application.extensions.YiiMailer.*',
+        'application.extensions.ImageEditor.*',
+        'application.extensions.bootstrap.helpers.TbArray',
+        'application.extensions.bootstrap.behaviors.TbWidget',
+        'application.extensions.bootstrap.widgets.*'
     ),
     'modules' => array(
         // uncomment the following to enable the Gii tool
@@ -56,22 +60,22 @@ return array(
           ), */
         // uncomment the following to use a MySQL database
 
-        /*'db'=>array(
+        'db'=>array(
           'connectionString' => 'mysql:host=localhost;dbname=callboard',
           'emulatePrepare' => true,
           'username' => 'root',
           'password' => 'developer',
           'charset' => 'utf8',
           'tablePrefix' => 'cb_'
-          ),*/
-        'db' => array(
+          ),
+        /*'db' => array(
             'connectionString' => 'mysql:host=miabook.mysql.ukraine.com.ua;dbname=miabook_board',
             'emulatePrepare' => true,
             'username' => 'miabook_board',
             'password' => '4n368kzg',
             'charset' => 'utf8',
             'tablePrefix' => 'cb_'
-        ),
+        ),*/
         'errorHandler' => array(
             // use 'site/error' action to display errors
             'errorAction' => 'site/error',
@@ -97,6 +101,6 @@ return array(
     // using Yii::app()->params['paramName']
     'params' => array(
         // this is used in contact page
-        'adminEmail' => 'denis.kv76@gmail.com',
+        'adminEmail' => 'noreply@info.com',
     ),
 );

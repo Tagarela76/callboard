@@ -38,10 +38,9 @@ class RegistrationForm extends CFormModel
     {
         return array(
             // username and password are required
-            array('email, user_name, password, confirm_password', 'required'),
-            array('email', 'email'),
-            array('password, confirm_password', 'length', 'min'=>6, 'max'=>40),
-            array('confirm_password', 'compare', 'compareAttribute'=>'password'),
+            array('email, user_name, password, confirm_password', 'required', 'message'=>'{attribute} не может быть пустым.'),
+            array('email', 'email', 'message'=>'{attribute} не является емайлом.'),
+            array('confirm_password', 'compare', 'compareAttribute'=>'password', 'message'=>'Пароли не совпадают'),
         );
     }
 
